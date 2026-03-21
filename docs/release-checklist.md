@@ -225,7 +225,7 @@ Commit these changes:
 ```bash
 git add CHANGELOG.md README.md TODO.md
 git commit -m "docs: prepare for v0.1.0-alpha release"
-git push origin release/v0.1.0-alpha
+git push origin main
 ```
 
 ---
