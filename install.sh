@@ -4,9 +4,9 @@ set -e
 
 # SUPPLY CHAIN NOTICE
 # This fork (canstralian/pilot-shell-devsecops) does not yet publish independent
-# release artifacts. All binaries and installer files are downloaded from the
-# upstream repository listed below. Installing via this script means you are
-# trusting artifacts produced by the upstream project, not this fork.
+# release artifacts. Pilot Shell binaries and Python installer files are downloaded
+# from the upstream repository listed below. Installing via this script means you
+# are trusting those artifacts produced by the upstream project, not this fork.
 #
 # To publish fork-native releases, see docs/bootstrap-provenance.md.
 FORK_REPO="canstralian/pilot-shell-devsecops"
