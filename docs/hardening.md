@@ -38,7 +38,7 @@ revisited as the fork matures.
 |---|---|---|---|
 | `DISABLE_INSTALLATION_CHECKS` | `"true"` | Bypasses Claude Code installation guard-rails. Required for the fork's custom install path. | Accepted; document in install.sh |
 | `grep-mcp` (`type: http`) | `https://mcp.grep.app` | All tool calls are sent to a third-party HTTPS endpoint. No local execution, but data leaves the machine. | Low – read-only code search. Review if sensitive code is present. |
-| `mem-search` | Local `bun` script path | Script is not version-controlled in this repo; integrity relies on the local filesystem. | Medium – verify script provenance after install. |
+| `mem-search` | Local `bun` script path (`~/.claude/pilot/scripts/mcp-server.cjs`, from in-repo `pilot/scripts/mcp-server.cjs`) | Local script execution from this repo; compromise of the repo or install path would affect queries. | Medium – treat as trusted in-repo code; review changes to `pilot/scripts/mcp-server.cjs` and verify install path permissions. |
 | `npx -y` flags | Present on all pinned packages | Auto-installs the pinned version without a secondary prompt. Acceptable given explicit pinning. | Low – monitor for yanked/compromised releases. |
 
 ### Not changed in this patch
