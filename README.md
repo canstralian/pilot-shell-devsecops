@@ -238,6 +238,26 @@ These are documented in the roadmap and prioritized for future releases.
 
 ---
 
+## Troubleshooting
+
+### GitHub Actions Authentication Error
+
+If you see this error in GitHub Actions:
+```
+Environment variable validation failed:
+  - Either ANTHROPIC_API_KEY or CLAUDE_CODE_OAUTH_TOKEN is required
+```
+
+**Fix**: Configure the required API authentication. See **[docs/github-actions-setup.md](docs/github-actions-setup.md)** for detailed instructions.
+
+**Quick fix:**
+1. Navigate to repository Settings → Secrets and variables → Actions
+2. Add a new secret named `CLAUDE_CODE_OAUTH_TOKEN` or `ANTHROPIC_API_KEY`
+3. Get the token from the [Anthropic Console](https://console.anthropic.com/)
+4. Re-run the failed workflow
+
+---
+
 ## Upstream Attribution
 
 This fork builds on **[maxritter/pilot-shell](https://github.com/maxritter/pilot-shell)**. Credit for the original workflow engine, agent architecture, and quality automation belongs to that project.

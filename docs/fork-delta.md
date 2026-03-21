@@ -94,6 +94,7 @@ reading every file.
 | `docs/label-taxonomy.md` | Does not exist | Issue/PR labeling system | ✅ |
 | `docs/release-checklist.md` | Does not exist | Release quality gates | ✅ |
 | `docs/release-notes-template.md` | Does not exist | v0.1.0-alpha release notes template | ✅ |
+| `docs/github-actions-setup.md` | Does not exist | GitHub Actions authentication setup guide | ✅ |
 | `docs/docusaurus/` | Full upstream docs site | Unchanged (upstream content) | ❌ |
 | `CHANGELOG.md` | Upstream changelog | Unchanged | ❌ |
 
@@ -103,6 +104,7 @@ reading every file.
 
 | Workflow | Upstream | This Fork | Status |
 |----------|----------|-----------|--------|
+| `claude.yml` | Not present | Claude Code action for PR reviews and @claude mentions | ✅ |
 | `release.yml` | Upstream release process | Unchanged | ❌ |
 | `release-dev.yml` | Upstream dev release | Unchanged | ❌ |
 | `deploy-website.yml` | Upstream docs deploy | Unchanged | ❌ |
@@ -110,6 +112,8 @@ reading every file.
 | Dependency review | Not present | Not present | 🔒 |
 | Secret scanning | Not present | Not present | 🔒 |
 | SBOM generation | Not present | Not present | 🔒 |
+
+> **Note on Claude Workflow:** The `claude.yml` workflow requires `CLAUDE_CODE_OAUTH_TOKEN` or `ANTHROPIC_API_KEY` to be configured as a repository secret. See [docs/github-actions-setup.md](github-actions-setup.md) for setup instructions.
 
 ---
 
