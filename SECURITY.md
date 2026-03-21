@@ -8,17 +8,12 @@ We take security seriously in the Pilot Shell DevSecOps fork. If you discover a 
 
 **Do NOT open a public GitHub issue for security vulnerabilities.**
 
-Instead, please report security issues privately using one of these methods:
+Instead, please report security issues privately using the following method:
 
 1. **GitHub Security Advisories** (Preferred):
    - Navigate to the [Security tab](https://github.com/canstralian/pilot-shell-devsecops/security/advisories)
    - Click "Report a vulnerability"
    - Fill out the advisory form with details
-
-2. **Direct Contact**:
-   - Email: [security contact to be added]
-   - Subject line: `[SECURITY] Brief description of issue`
-
 ### What to Include
 
 Please provide the following information in your report:
