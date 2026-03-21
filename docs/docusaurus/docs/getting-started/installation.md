@@ -11,10 +11,19 @@ Works with any existing project — no scaffolding required.
 ## One-Command Installation
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/maxritter/pilot-shell/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/canstralian/pilot-shell-devsecops/main/install.sh | bash
 ```
 
 Run from any directory — it installs globally to `~/.pilot/` and `~/.claude/`. After installation, `cd` into any project and run `pilot` or `ccp` to start.
+
+:::caution Binary Provenance Notice
+This fork does not yet publish independent release artifacts. The installer
+downloads binaries and Python installer files from the upstream project
+[`maxritter/pilot-shell`](https://github.com/maxritter/pilot-shell).
+You are trusting upstream-produced artifacts during installation.
+See [`docs/bootstrap-provenance.md`](https://github.com/canstralian/pilot-shell-devsecops/blob/main/docs/bootstrap-provenance.md)
+for the full supply-chain status and the roadmap to fork-native releases.
+:::
 
 ## What the Installer Does
 
@@ -60,21 +69,21 @@ Claude Code's built-in plan mode (`Shift+Tab` → "plan") is unstructured — pl
 
 ## Dev Container
 
-Pilot Shell works inside Dev Containers. Copy the `.devcontainer` folder from the [Pilot Shell repository](https://github.com/maxritter/pilot-shell/tree/main/.devcontainer) into your project, adapt it to your needs (base image, extensions, dependencies), and run the installer inside the container. The installer auto-detects the container environment and skips system-level dependencies like Homebrew.
+Pilot Shell works inside Dev Containers. Copy the `.devcontainer` folder from the [upstream Pilot Shell repository](https://github.com/maxritter/pilot-shell/tree/main/.devcontainer) into your project, adapt it to your needs (base image, extensions, dependencies), and run the installer inside the container. The installer auto-detects the container environment and skips system-level dependencies like Homebrew.
 
 ## Install Specific Version
 
 ```bash
 export VERSION=7.5.7
-curl -fsSL https://raw.githubusercontent.com/maxritter/pilot-shell/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/canstralian/pilot-shell-devsecops/main/install.sh | bash
 ```
 
-See [releases](https://github.com/maxritter/pilot-shell/releases) for all available versions. Useful when a specific version is known stable.
+See [upstream releases](https://github.com/maxritter/pilot-shell/releases) for all available versions. Useful when a specific version is known stable. Note: versions correspond to upstream release tags until this fork publishes independent artifacts.
 
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/maxritter/pilot-shell/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/canstralian/pilot-shell-devsecops/main/uninstall.sh | bash
 ```
 
 Removes binary, plugin files, managed commands/rules, settings, and shell aliases. Your project's custom `.claude/` files are preserved.

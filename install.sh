@@ -2,7 +2,16 @@
 
 set -e
 
-REPO="maxritter/pilot-shell"
+# SUPPLY CHAIN NOTICE
+# This fork (canstralian/pilot-shell-devsecops) does not yet publish independent
+# release artifacts. All binaries and installer files are downloaded from the
+# upstream repository listed below. Installing via this script means you are
+# trusting artifacts produced by the upstream project, not this fork.
+#
+# To publish fork-native releases, see docs/bootstrap-provenance.md.
+FORK_REPO="canstralian/pilot-shell-devsecops"
+UPSTREAM_REPO="maxritter/pilot-shell"
+REPO="$UPSTREAM_REPO"
 
 VERSION="${VERSION:-}"
 VERSION="${VERSION#v}"
@@ -416,8 +425,15 @@ fi
 
 echo ""
 echo "======================================================================"
-echo "  Pilot Shell Installer (v${VERSION})"
+echo "  Pilot Shell DevSecOps — Installer (v${VERSION})"
+echo "  Fork: https://github.com/${FORK_REPO}"
 echo "======================================================================"
+echo ""
+echo "  ⚠  SUPPLY CHAIN NOTICE"
+echo "  This fork does not yet publish independent release artifacts."
+echo "  Binaries and installer files are downloaded from upstream:"
+echo "    https://github.com/${UPSTREAM_REPO}"
+echo "  See docs/bootstrap-provenance.md for details."
 echo ""
 
 if is_in_container; then
@@ -435,7 +451,7 @@ else
 fi
 
 echo ""
-echo "Downloading Pilot Shell (v${VERSION})..."
+echo "Downloading Pilot Shell upstream artifacts (v${VERSION})..."
 echo ""
 
 if check_uv; then
