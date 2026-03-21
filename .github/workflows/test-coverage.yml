@@ -1,0 +1,55 @@
+name: Test Coverage
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies (console)
+        run: bun install
+        working-directory: ./console
+
+      - name: Run type checking
+        run: bun run typecheck
+        working-directory: ./console
+
+      - name: Run tests with coverage
+        run: bun run test:ci
+        working-directory: ./console
+
+      - name: Check coverage thresholds
+        run: |
+          echo "Checking coverage thresholds..."
+          # Coverage thresholds are enforced in package.json
+          # Lines: 60%, Functions: 60%, Branches: 50%, Statements: 60%
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./console/coverage/lcov.info
+          flags: unittests
+          name: console-coverage
+          fail_ci_if_error: false
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: console/coverage/
+          retention-days: 7
