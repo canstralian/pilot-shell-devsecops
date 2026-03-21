@@ -14,6 +14,7 @@ pinned to exact versions to prevent silent supply-chain updates.
 | `skipDangerousModePermissionPrompt` | `true` | `false` | Surface the danger prompt so the operator actively acknowledges elevated operations. |
 | `enableAllProjectMcpServers` | `true` | `false` | Prevent project-level `.mcp.json` files from loading MCP servers automatically; each server must be explicitly opted in. |
 
+**Note on `/spec` workflow:** The `/spec` command path was originally designed to run with `permissions.defaultMode` set to `"bypassPermissions"`. With the new `"default"` posture, the `spec_mode_guard` hook may warn or block certain `/spec` actions based on the active mode. If you rely on the previous, fully-unblocked `/spec` behavior, you must explicitly switch `permissions.defaultMode` back to `"bypassPermissions"` (or run only those sessions in that mode), understanding that this re-enables higher-trust execution.
 ### `pilot/.mcp.json` – pinned `npx` package versions
 
 | Server | Before | After |
