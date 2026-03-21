@@ -11,7 +11,7 @@ https://github.com/maxritter/pilot-shell
 ```
 
 This means users who install via this fork's `install.sh` are trusting artifacts
-produced and signed by the upstream project, not by this fork. That dependency is
+produced by the upstream project, not by this fork. That dependency is
 intentional and documented — it is not a silent supply-chain assumption.
 
 ## Supply Chain Dependency Summary
