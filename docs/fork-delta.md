@@ -84,9 +84,16 @@ reading every file.
 
 | File | Upstream | This Fork | Status |
 |------|----------|-----------|--------|
-| `README.md` | Upstream product README | Temporary fork README (intentional) | ✅ |
+| `README.md` | Upstream product README | DevSecOps fork README with credible positioning | ✅ |
+| `SECURITY.md` | Does not exist | Responsible disclosure policy | ✅ |
+| `TODO.md` | Does not exist | Prioritized work backlog | ✅ |
+| `FEATURES.md` | Does not exist | Feature inventory (inherited vs fork-specific) | ✅ |
 | `docs/fork-delta.md` | Does not exist | This file | ✅ |
-| `docs/devsecops-fork-roadmap.md` | Does not exist | Created | ✅ |
+| `docs/devsecops-fork-roadmap.md` | Does not exist | Security audit and roadmap | ✅ |
+| `docs/hardening-note.md` | Does not exist | Trust boundary changes documentation | ✅ |
+| `docs/label-taxonomy.md` | Does not exist | Issue/PR labeling system | ✅ |
+| `docs/release-checklist.md` | Does not exist | Release quality gates | ✅ |
+| `docs/release-notes-template.md` | Does not exist | v0.1.0-alpha release notes template | ✅ |
 | `docs/docusaurus/` | Full upstream docs site | Unchanged (upstream content) | ❌ |
 | `CHANGELOG.md` | Upstream changelog | Unchanged | ❌ |
 
@@ -103,6 +110,19 @@ reading every file.
 | Dependency review | Not present | Not present | 🔒 |
 | Secret scanning | Not present | Not present | 🔒 |
 | SBOM generation | Not present | Not present | 🔒 |
+
+---
+
+## 6.5. Issue Templates (`.github/ISSUE_TEMPLATE/`)
+
+| Template | Upstream | This Fork | Status |
+|----------|----------|-----------|--------|
+| `bug_report.md` | Basic bug template | Enhanced with fork-specific fields | ✅ |
+| `feature_request.md` | Basic feature template | Enhanced with fork-specific fields | ✅ |
+| `security_issue.yml` | Basic security template | Enhanced security issue template | ✅ |
+| `hardening_task.md` | Not present | DevSecOps hardening task template | ✅ |
+| `release_checklist.md` | Not present | Comprehensive release checklist template | ✅ |
+| `config.yml` | Present | Unchanged | ✅ |
 
 ---
 
