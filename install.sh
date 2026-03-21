@@ -47,6 +47,42 @@ while [ $# -gt 0 ]; do
 	esac
 done
 
+is_native_windows() {
+	case "$(uname -s)" in
+	MINGW* | MSYS* | CYGWIN*) return 0 ;;
+	*) return 1 ;;
+	esac
+}
+
+if is_native_windows; then
+	echo ""
+	echo "======================================================================"
+	echo "  Pilot Shell — Windows Detected"
+	echo "======================================================================"
+	echo ""
+	echo "  Pilot Shell requires a Unix environment (macOS, Linux, or WSL2)."
+	echo ""
+	echo "  Install WSL2 first (PowerShell as admin):"
+	echo "    wsl --install -d Ubuntu"
+	echo ""
+	echo "  Then open Ubuntu and re-run this installer."
+	echo ""
+	exit 1
+fi
+
+echo ""
+echo "======================================================================"
+echo "  Pilot Shell DevSecOps — Installer"
+echo "  Fork: https://github.com/${FORK_REPO}"
+echo "======================================================================"
+echo ""
+echo "  ⚠  SUPPLY CHAIN NOTICE"
+echo "  This fork does not yet publish independent release artifacts."
+echo "  Binaries and installer files are downloaded from upstream:"
+echo "    https://github.com/${UPSTREAM_REPO}"
+echo "  See: https://github.com/${FORK_REPO}/blob/main/docs/bootstrap-provenance.md"
+echo ""
+
 get_latest_release() {
 	local redirect_url="https://github.com/${REPO}/releases/latest"
 	local api_url="https://api.github.com/repos/${REPO}/releases/latest"
@@ -422,19 +458,6 @@ if is_native_windows; then
 	echo ""
 	exit 1
 fi
-
-echo ""
-echo "======================================================================"
-echo "  Pilot Shell DevSecOps — Installer (v${VERSION})"
-echo "  Fork: https://github.com/${FORK_REPO}"
-echo "======================================================================"
-echo ""
-echo "  ⚠  SUPPLY CHAIN NOTICE"
-echo "  This fork does not yet publish independent release artifacts."
-echo "  Binaries and installer files are downloaded from upstream:"
-echo "    https://github.com/${UPSTREAM_REPO}"
-echo "  See docs/bootstrap-provenance.md for details."
-echo ""
 
 if is_in_container; then
 	echo "  Running inside container — skipping system dependencies"
