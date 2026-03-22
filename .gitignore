@@ -234,6 +234,7 @@ demo
 skills-lock.json
 sx.json
 .env**
+!.env.example
 playwright/
 .claude.backup.*
 *.backup
