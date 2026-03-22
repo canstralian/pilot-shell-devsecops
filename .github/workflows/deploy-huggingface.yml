@@ -1,0 +1,84 @@
+---
+name: Deploy to Hugging Face Spaces
+
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - "app.py"
+      - "requirements.txt"
+      - "Dockerfile"
+      - ".github/workflows/deploy-huggingface.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-huggingface
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Build & Push to Hugging Face Spaces
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install Hugging Face CLI
+        run: pip install huggingface_hub
+
+      - name: Log in to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: huggingface-cli login --token "$HF_TOKEN"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --tag pilot-shell-backend:latest \
+            --file Dockerfile \
+            .
+
+      - name: Push image to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        run: |
+          # HF_SPACE should be in the format "owner/space-name"
+          # e.g. "canstralian/pilot-shell-backend"
+          if [ -z "$HF_SPACE" ]; then
+            echo "::error::HF_SPACE repository variable is not set."
+            exit 1
+          fi
+
+          # Clone the Space repo, overwrite Dockerfile and app source, then push.
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          SPACE_REPO="https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}"
+          git clone "$SPACE_REPO" hf-space
+
+          cp Dockerfile hf-space/Dockerfile
+          cp app.py hf-space/app.py
+          cp requirements.txt hf-space/requirements.txt
+
+          cd hf-space
+          git add Dockerfile app.py requirements.txt
+          if git diff --cached --quiet; then
+            echo "No changes to deploy — skipping push."
+          else
+            git commit -m "chore: deploy from GitHub Actions (${GITHUB_SHA::8})"
+            git push
+          fi
