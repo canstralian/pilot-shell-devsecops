@@ -1,0 +1,6 @@
+interface:
+  display_name: "Pilot Shell Devsecops"
+  short_description: "Repo-specific patterns and workflows for pilot-shell-devsecops"
+  default_prompt: "Use the pilot-shell-devsecops repo skill to follow existing architecture, testing, and workflow conventions."
+policy:
+  allow_implicit_invocation: true
